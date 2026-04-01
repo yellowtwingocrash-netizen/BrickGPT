@@ -139,7 +139,7 @@ class BrickGPT:
 
         # Generate brick structure. If it is unstable, remove all bricks after the first unstable brick and regenerate.
         for regeneration_num in range(self.max_regenerations + 1):
-            bricks, this_rejection_reasons = self._generate_structure(caption, starting_bricks=starting_bricks)
+            bricks, this_rejection_reasons = self.generate_structure(caption, starting_bricks=starting_bricks)
             rejection_reasons.update(this_rejection_reasons)
             if self.max_regenerations == 0 or self._is_stable(bricks):
                 break
@@ -154,7 +154,7 @@ class BrickGPT:
             'n_regenerations': regeneration_num,
         }
 
-    def _generate_structure(
+    def generate_structure(
             self,
             caption: str,
             starting_bricks: BrickStructure = BrickStructure([]),

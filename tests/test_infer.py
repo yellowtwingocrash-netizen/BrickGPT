@@ -66,7 +66,7 @@ def test_finish_partial_structure():
     partial_structure_txt = '1x1 (2,19,0)\n1x4 (2,15,0)\n1x8 (2,7,0)\n1x1 (1,6,0)\n2x2 (0,18,0)\n2x1 (0,17,0)\n2x6 (0,11,0)\n'
     partial_bricks = BrickStructure.from_txt(partial_structure_txt)
     brickgpt = BrickGPT(BrickGPTConfig(BRICKGPT_PATH, max_bricks=1, max_regenerations=0))
-    bricks, rejections = brickgpt._generate_structure(
+    bricks, rejections = brickgpt.generate_structure(
         'An elongated, rectangular vessel with layered construction, central recess, and uniform edges.', partial_bricks)
 
     print(bricks)
