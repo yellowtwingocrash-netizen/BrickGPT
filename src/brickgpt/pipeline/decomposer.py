@@ -69,14 +69,21 @@ def decompose_image(
     image_data = Path(image_path).read_bytes()
     base64_image = base64.standard_b64encode(image_data).decode('utf-8')
 
-    suffix = Path(image_path).suffix.lower()
-    media_type = {
-        '.png': 'image/png',
-        '.jpg': 'image/jpeg',
-        '.jpeg': 'image/jpeg',
-        '.gif': 'image/gif',
-        '.webp': 'image/webp',
-    }.get(suffix, 'image/png')
+    # Detect actual format from file header (not extension — Flux2.pro outputs JPEG as .png)
+    if image_data[:8] == b'\x89PNG\r\n\x1a\n':
+        media_type = 'image/png'
+    elif image_data[:2] == b'\xff\xd8':
+        media_type = 'image/jpeg'
+    elif image_data[:4] == b'RIFF' and image_data[8:12] == b'WEBP':
+        media_type = 'image/webp'
+    elif image_data[:6] in (b'GIF87a', b'GIF89a'):
+        media_type = 'image/gif'
+    else:
+        suffix = Path(image_path).suffix.lower()
+        media_type = {
+            '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+            '.gif': 'image/gif', '.webp': 'image/webp',
+        }.get(suffix, 'image/png')
 
     response = client.messages.create(
         model=model,
