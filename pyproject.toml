@@ -21,11 +21,16 @@ finetuning = [
     "trl",
     "wandb",
 ]
+pipeline = [
+    "anthropic",
+    "httpx",
+]
 
 [project.scripts]
 infer = "brickgpt.infer:main"
 prepare_finetuning_dataset = "brickgpt.prepare_finetuning_dataset:main"
 render_bricks = "brickgpt.render_bricks:main"
+generate-substation = "brickgpt.pipeline.cli:main"
 
 [build-system]
 requires = ["hatchling"]

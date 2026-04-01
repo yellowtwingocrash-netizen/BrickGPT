@@ -214,6 +214,38 @@ class BrickStructure:
         scores = connectivity_score(self)
         return scores
 
+    def merge(self, other: 'BrickStructure', offset: tuple[int, int, int] = (0, 0, 0)) -> list[Brick]:
+        """
+        Merges another BrickStructure into this one, applying a coordinate offset.
+        Skips bricks that would collide or go out of bounds.
+        Returns the list of bricks that were skipped.
+        """
+        ox, oy, oz = offset
+        skipped = []
+        for brick in other.bricks:
+            shifted = Brick(h=brick.h, w=brick.w, x=brick.x + ox, y=brick.y + oy, z=brick.z + oz)
+            if not self.brick_in_bounds(shifted) or self.brick_collides(shifted):
+                skipped.append(shifted)
+                continue
+            self.add_brick(shifted)
+        return skipped
+
+    def bill_of_materials(self) -> dict[str, dict]:
+        """
+        Returns a bill of materials mapping brick type notation to count and LDraw part ID.
+        """
+        from collections import Counter
+        counts: Counter[str] = Counter()
+        for brick in self.bricks:
+            key = f'{brick.h}x{brick.w}'
+            counts[key] += 1
+        bom = {}
+        for key, count in counts.most_common():
+            h, w = map(int, key.split('x'))
+            temp_brick = Brick(h=h, w=w, x=0, y=0, z=0)
+            bom[key] = {'count': count, 'part_id': temp_brick.part_id}
+        return bom
+
     @classmethod
     def from_json(cls, bricks_json: dict):
         bricks = [Brick.from_json(v) for k, v in bricks_json.items() if k.isdigit()]

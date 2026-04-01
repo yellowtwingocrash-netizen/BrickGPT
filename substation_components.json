@@ -1,0 +1,112 @@
+[
+  {
+    "name": "control_building",
+    "description": "rectangular flat-roofed control building with boxy walls and small windows",
+    "offset": [
+      -15,
+      -10,
+      0
+    ],
+    "world_dim": 15
+  },
+  {
+    "name": "transformer_1",
+    "description": "tall rectangular transformer unit with stepped base and vertical columns",
+    "offset": [
+      0,
+      -5,
+      0
+    ],
+    "world_dim": 12
+  },
+  {
+    "name": "transformer_2",
+    "description": "tall rectangular transformer unit with stepped base and vertical columns",
+    "offset": [
+      12,
+      -5,
+      0
+    ],
+    "world_dim": 12
+  },
+  {
+    "name": "switchgear_1",
+    "description": "compact rectangular switchgear assembly with vertical posts and horizontal crossbeams",
+    "offset": [
+      -8,
+      5,
+      0
+    ],
+    "world_dim": 10
+  },
+  {
+    "name": "switchgear_2",
+    "description": "compact rectangular switchgear assembly with vertical posts and horizontal crossbeams",
+    "offset": [
+      2,
+      5,
+      0
+    ],
+    "world_dim": 10
+  },
+  {
+    "name": "switchgear_3",
+    "description": "compact rectangular switchgear assembly with vertical posts and horizontal crossbeams",
+    "offset": [
+      12,
+      5,
+      0
+    ],
+    "world_dim": 10
+  },
+  {
+    "name": "perimeter_fence",
+    "description": "rectangular perimeter fence with thin vertical posts and horizontal mesh walls",
+    "offset": [
+      -20,
+      -15,
+      0
+    ],
+    "world_dim": 20
+  },
+  {
+    "name": "transmission_tower_1",
+    "description": "tall triangular lattice tower with stepped cross-arms and narrow tapered legs",
+    "offset": [
+      -25,
+      0,
+      0
+    ],
+    "world_dim": 15
+  },
+  {
+    "name": "transmission_tower_2",
+    "description": "tall triangular lattice tower with stepped cross-arms and narrow tapered legs",
+    "offset": [
+      25,
+      -8,
+      0
+    ],
+    "world_dim": 15
+  },
+  {
+    "name": "transmission_tower_3",
+    "description": "tall triangular lattice tower with stepped cross-arms and narrow tapered legs",
+    "offset": [
+      30,
+      8,
+      0
+    ],
+    "world_dim": 15
+  },
+  {
+    "name": "gravel_base",
+    "description": "wide flat rectangular gravel foundation with thin uniform base layer",
+    "offset": [
+      -12,
+      -8,
+      -1
+    ],
+    "world_dim": 20
+  }
+]
