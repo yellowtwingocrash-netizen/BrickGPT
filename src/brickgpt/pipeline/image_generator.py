@@ -33,7 +33,7 @@ def generate_reference_image(
         raise ValueError('BFL_API_KEY not set. Pass api_key or set the environment variable.')
 
     # Submit generation request
-    client = httpx.Client()
+    client = httpx.Client(timeout=60.0)
     response = client.post(
         api_url,
         headers={'x-key': api_key},
@@ -96,6 +96,6 @@ def generate_substation_views(
         print(f'Generating {view["name"]} view...')
         generate_reference_image(prompt, path, api_key=api_key)
         paths.append(path)
-        print(f'  → Saved to {path}')
+        print(f'  \u2192 Saved to {path}')
 
     return paths
